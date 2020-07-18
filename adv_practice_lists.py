@@ -118,4 +118,21 @@ def rpn_calc(items):
         else:
             stack.append(item)
     return stack[0]
-      
+#функция mirror_matrix, которая принимает двумерный список (матрицу)
+#и изменяет его (по месту) таким образом, что правая половина
+#матрицы становится зеркальной копией левой половины,
+#симметричной относительно вертикальной оси матрицы.
+#Если ширина матрицы — нечётная,
+#то "средний" столбец не должен быть затронут.
+
+
+def mirror_matrix(matrix):
+    for i, _ in enumerate(matrix[:]):
+        buffer = matrix.pop(i)
+        length = len(buffer) // 2
+        if len(buffer) % 2 == 0:
+            matrix_string = buffer[:length] + buffer[length - 1::-1]
+        else:
+            matrix_string = buffer[:length] + buffer[length::-1]
+        matrix.insert(i, matrix_string)
+   
