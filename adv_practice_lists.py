@@ -136,3 +136,27 @@ def mirror_matrix(matrix):
             matrix_string = buffer[:length] + buffer[length::-1]
         matrix.insert(i, matrix_string)
    
+#функция summary_ranges, которая находит в списке непрерывные
+#возрастающие последовательности чисел и возвращает список
+#с их перечислением.
+
+def summary_ranges(source):
+    fitting_sequences = []
+    sub_result = []
+    result = []
+    i = 1
+    while i < len(source):
+        if source[i - 1] - source[i] == -1:
+            if not fitting_sequences:
+                fitting_sequences.append(source[i - 1])
+            fitting_sequences.append(source[i])
+        elif fitting_sequences:
+            sub_result.append(fitting_sequences)
+            fitting_sequences = []
+        if i == len(source) - 1 and fitting_sequences:
+            sub_result.append(fitting_sequences)
+        i += 1
+    for item in sub_result:
+        result.append(('{}->{}').format(min(item), max(item)))
+    return result
+
